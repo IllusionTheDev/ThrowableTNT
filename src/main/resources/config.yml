@@ -1,0 +1,19 @@
+fire: false #TNT makes fire
+power: -1 #Set to -1 to use the default TNT power
+speed: 0.5 #Speed multipler, higher the number, higher the speed
+height: 0.8
+
+remove-item: true
+
+shift-action: PLACE_BLOCK #Available actions: PLACE_BLOCK, THROW, NOTHING
+
+actions: #In case you want to add left click for example
+- 'RIGHT_CLICK_AIR'
+- 'RIGHT_CLICK_BLOCK'
+
+allow-interaction:
+- 'CHEST'
+- 'TRAPPED_CHEST'
+- 'HOPPER'
+- 'CRAFTING_TABLE'
+- 'FURNANCE'
