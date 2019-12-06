@@ -15,11 +15,14 @@ public class ThrowListener implements Listener {
     @EventHandler
     private void onThrow(PlayerInteractEvent e)
     {
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK && ThrowableTNT.getInstance().getAllowInteraction().contains(e.getClickedBlock().getType()))
+        ThrowableTNT instance = ThrowableTNT.getInstance();
+
+        if(!instance.getPermission().equalsIgnoreCase("") && !e.getPlayer().hasPermission(instance.getPermission()))
+            return;
+        if(e.getAction() == Action.RIGHT_CLICK_BLOCK && instance.getAllowInteraction().contains(e.getClickedBlock().getType()))
             return;
         if(e.getItem() != null && e.getItem().getType() == Material.TNT)
         {
-            ThrowableTNT instance = ThrowableTNT.getInstance();
             if(instance.getActions().contains(e.getAction()))
             {
                 if(instance.getAction() == ShiftAction.THROW && !e.getPlayer().isSneaking())

@@ -12,13 +12,17 @@ public class BlockPlace implements Listener {
     @EventHandler
     private void onBlockPlace(BlockPlaceEvent e)
     {
+        ThrowableTNT instance = ThrowableTNT.getInstance();
+
+        if(!instance.getPermission().equalsIgnoreCase("") && !e.getPlayer().hasPermission(instance.getPermission()))
+            return;
         if(e.getBlock().getType() == Material.TNT)
         {
-            if(ThrowableTNT.getInstance().getAction() == ShiftAction.NOTHING)
+            if(instance.getAction() == ShiftAction.NOTHING)
                 e.setCancelled(true);
-            if(ThrowableTNT.getInstance().getAction() == ShiftAction.PLACE_BLOCK)
+            if(instance.getAction() == ShiftAction.PLACE_BLOCK)
                 e.setCancelled(!e.getPlayer().isSneaking());
-            if(ThrowableTNT.getInstance().getAction() == ShiftAction.THROW)
+            if(instance.getAction() == ShiftAction.THROW)
                 e.setCancelled(e.getPlayer().isSneaking());
         }
     }

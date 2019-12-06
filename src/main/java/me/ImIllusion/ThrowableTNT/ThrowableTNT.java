@@ -32,6 +32,8 @@ public class ThrowableTNT extends JavaPlugin {
     private ShiftAction action;
     @Getter
     private List<Material> allowInteraction = new ArrayList<>();
+    @Getter
+    private String permission;
 
 
     private static ThrowableTNT instance;
@@ -46,11 +48,12 @@ public class ThrowableTNT extends JavaPlugin {
         instance = this;
 
         saveDefaultConfig();
-        fire       = getConfig().getBoolean("fire"      , false);
-        power      = getConfig().getInt    ("power"     , -1   );
+        fire       = getConfig().getBoolean("fire"       , false);
+        power      = getConfig().getInt    ("power"      , -1   );
         speed      = getConfig().getDouble ("speed"                 );
         height     = getConfig().getDouble ("height"                );
         removeItem = getConfig().getBoolean("remove-item", true);
+        permission = getConfig().getString("permission"  , "");
 
         action = ShiftAction.valueOf(getConfig().getString("shift-action", "NOTHING"));
 
